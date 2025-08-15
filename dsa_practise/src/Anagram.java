@@ -8,6 +8,7 @@ public class Anagram {
 		checkAnagram(word1.toLowerCase(),word2.toLowerCase());
 		System.out.println("Done");
 		System.out.println("Completed");
+		
 	}
 
 	private static void checkAnagram(String w1, String w2) {
