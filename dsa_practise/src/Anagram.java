@@ -14,7 +14,6 @@ public class Anagram {
 		Arrays.sort(c1);
 		Arrays.sort(c2);
 		System.out.println(Arrays.equals(c1, c2));
-		
 	}
 
 	private static void checkAnagramXor(String word1, String word2) {
