@@ -6,6 +6,7 @@ public class Anagram {
 		String word2 = "silent";
 		checkAnagramXor(word1.toLowerCase(),word2.toLowerCase());
 		checkAnagram(word1.toLowerCase(),word2.toLowerCase());
+		System.out.println("Done");
 	}
 
 	private static void checkAnagram(String w1, String w2) {
