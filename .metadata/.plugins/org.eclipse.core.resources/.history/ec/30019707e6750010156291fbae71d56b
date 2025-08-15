@@ -1,0 +1,10 @@
+package Prac;
+
+import java.util.Arrays;
+
+public class StringProblems {
+	public static void main(String[] args) {
+		String str1 = "The quick brown fox jumps right over the little lazy dog";
+		Arrays.asList(str1.split(" ")).stream();
+	}
+}

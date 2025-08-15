@@ -1,0 +1,78 @@
+package Linkedlist;
+
+public class AddLinkList {
+	LinkedList head;
+
+	public AddLinkList() {
+	}
+
+	class LinkedList {
+		int data;
+		LinkedList next;
+
+		public LinkedList(int data) {
+			this.data = data;
+		}
+	}
+
+	public static void main(String[] args) {
+		AddLinkList l = new AddLinkList();
+		l.addElementAtFirst(1);
+		l.addElementAtFirst(2);
+		l.addElementAtFirst(3);
+		l.addElementAtLast(10);
+		l.addElementAtLast(11);
+		l.addElementAtLast(15);
+		l.print();
+		System.out.println();
+		l.addElementAtIndex(20, 4);
+		l.print();
+	}
+
+	private void addElementAtIndex(int data, int index) {
+		LinkedList newNode = new LinkedList(data);
+		if (index == 0) {
+			addElementAtFirst(data);
+		}
+		LinkedList current = head;
+		for (int i = 0; i < index - 1 && current != null; i++) {
+			current = current.next;
+		}
+		newNode.next = current.next.next;
+		current.next = newNode;
+	}
+
+	private void addElementAtLast(int data) {
+		LinkedList newNode = new LinkedList(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		LinkedList current = head;
+		while (current.next != null) {
+			current = current.next;
+		}
+		current.next = newNode;
+	}
+
+	public void addElementAtFirst(int data) {
+		LinkedList newNode = new LinkedList(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		newNode.next = head;
+		head = newNode;
+	}
+
+	public void print() {
+		if (head == null) {
+			return;
+		}
+		LinkedList current = head;
+		while (current != null) {
+			System.out.print(current.data + " ");
+			current = current.next;
+		}
+	}
+}

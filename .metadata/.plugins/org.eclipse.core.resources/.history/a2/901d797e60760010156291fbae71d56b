@@ -1,0 +1,16 @@
+package Prac;
+
+public class LongestUniqueSubstring {
+	public static void main(String[] args) {
+		String input = "abcabcbb";
+		System.out.println("Length of longest unique substring: " + lengthOfLongestSubstring(input));
+	}
+
+	private static String lengthOfLongestSubstring(String input) {
+		int n=input.length();
+		for (int i=0;i<n;i++) {
+			
+		}
+		return null;
+	}
+}

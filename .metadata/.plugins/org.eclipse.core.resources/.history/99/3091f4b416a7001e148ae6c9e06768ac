@@ -1,0 +1,41 @@
+package recursiveTakeuForward;
+
+public class Fibonacci {
+	public static void main(String[] args) {
+		int n = 5;
+		System.out.println(fibo(7));
+		System.out.println(fibo(30));
+		System.out.println(fibo(45));
+		System.out.println(fiboDP(45));
+	}
+
+	private static int fibo(int n) {
+		if (n == 0 || n == 1) {
+			return n;
+		}
+//		System.out.println("n");
+		return fibo(n - 1) + fibo(n - 2);
+	}
+    public static long fib(int n) {
+        if (n <= 1) {
+            return n;
+        }
+
+        // Create an array to store Fibonacci numbers
+        long[] dp = new long[n + 1];
+        Arrays.fill(dp, -1);
+
+        // Seed values
+        dp[0] = 0;
+        dp[1] = 1;
+
+        return fibDP(n, dp);
+    }
+	private static int fiboDP(int n) {
+		if (n == 0 || n == 1) {
+			return n;
+		}
+//		System.out.println("n");
+		result= fibo(n - 1) + fibo(n - 2);
+	}
+}

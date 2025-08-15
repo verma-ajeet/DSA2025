@@ -1,0 +1,63 @@
+package recursiveTakeuForward;
+
+import java.util.Arrays;
+
+public class Fibonacci {
+	public static void main(String[] args) {
+		int n = 5;
+		System.out.println(fibo(7));
+//		System.out.println(fibo(30));
+//		System.out.println(fibo(45));  it takes long time
+		long result = fib(100);
+		System.out.println("Fibonacci of " + n + ": " + result);
+	}
+
+	private static int fibo(int n) {
+		if (n == 0 || n == 1) {
+			return n;
+		}
+//		System.out.println("n");
+		return fibo(n - 1) + fibo(n - 2);
+	}
+
+	public static long fib(int n) {
+		if (n <= 1) {
+			return n;
+		}
+
+		// Create an array to store Fibonacci numbers
+		long[] dp = new long[n + 1];
+		Arrays.fill(dp, -1);
+
+		// Seed values
+		dp[0] = 0;
+		dp[1] = 1;
+
+		return fibDP(n, dp);
+	}
+
+	private static long fibDP(int n, long[] dp) {
+		// Check if the value is already computed
+		if (dp[n] != -1) {
+			return dp[n];
+		}
+
+		// Compute Fibonacci value and store it in the array
+		dp[n] = fibDP(n - 1, dp) + fibDP(n - 2, dp);
+		System.out.println(Arrays.toString(dp));
+		return dp[n];
+	}
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

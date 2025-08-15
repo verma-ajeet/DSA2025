@@ -1,0 +1,67 @@
+package Prac;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.OptionalInt;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+class Student {
+	private String name;
+	private int id;
+	private String subject;
+	private double percentage;
+
+	public Student(String name, int id, String subject, double percentage) {
+		this.name = name;
+		this.id = id;
+		this.subject = subject;
+		this.percentage = percentage;
+	}
+
+	// Getters
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassStudent{" + "name='" + name + '\'' + ", id=" + id + ", subject='" + subject + '\''
+				+ ", percentage=" + percentage + '}';
+	}
+}
+
+public class StreamPra {
+	public static void main(String[] args) {
+
+		int sum = IntStream.rangeClosed(0, 10).sum();
+		System.out.println(sum);
+		OptionalInt reduce = IntStream.range(0, 10).reduce((a, b) -> a + b);
+		System.out.println(reduce);
+		 List<Student> student = Arrays.asList(
+		            new Student("Alice", 1, "Math", 85.0),
+		            new Student("Bob", 2, "Math", 78.5),
+		            new Student("Charlie", 3, "Science", 92.0),
+		            new Student("Diana", 4, "Science", 88.0),
+		            new Student("Ethan", 5, "English", 76.0),
+		            new Student("Fiona", 6, "Math", 95.0),
+		            new Student("George", 7, "English", 82.0),
+		            new Student("Hannah", 8, "Science", 69.5),
+		            new Student("Ian", 9, "Math", 58.0),
+		            new Student("Jane", 10, "English", 91.0)
+		        );
+		 student.stream().collect(Collectors.partitioningBy(s->s.getPercentage()>60));
+	}
+}

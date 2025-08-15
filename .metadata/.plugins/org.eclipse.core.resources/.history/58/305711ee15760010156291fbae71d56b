@@ -1,0 +1,26 @@
+package Prac;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+public class ThreeSum {
+	public static void main(String[] args) {
+		int[] arr = { -2, -2, -2, -1, -1, -1, 0, 0, 0, 2, 2, 2, 2 };
+		int target = 0;
+		threeSum(arr, target);
+	}
+
+	private static void threeSum(int[] arr, int target) {
+		int k=arr.length-1;
+		int sum=0;
+		List<List<Integer>> l =new ArrayList<>();
+		for(int i=0, j=i+1;i<arr.length;i++) {
+			sum=arr[i]+arr[j]+arr[k];
+			if(sum==target) {
+				l.add(Arrays.asList(arr[i],arr[j],arr[k]))
+			}
+			
+		}
+	}
+}

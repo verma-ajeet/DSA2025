@@ -1,0 +1,3 @@
+int[] nums = {3, 30, 34, 5, 9};
+        String result = largestNumberOptimal(nums);
+        System.out.println("Largest Number (Optimal): " + result);

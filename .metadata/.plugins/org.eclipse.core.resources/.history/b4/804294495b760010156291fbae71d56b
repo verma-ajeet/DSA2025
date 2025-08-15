@@ -1,0 +1,36 @@
+package Prac;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class GroupAnagrams {
+	public static void main(String[] args) {
+		String[] input = { "eat", "tea", "tan", "ate", "nat", "bat" };
+		List<List<String>> grouped = groupAnagrams(input);
+
+		// Print result
+		for (List<String> group : grouped) {
+			System.out.println(group);
+		}
+	}
+
+	private static List<List<String>> groupAnagrams(String[] input) {
+		Map<String,List<String>> m=new HashMap<>();
+		
+		for (String word:input) {
+			char[] chars=word.toCharArray();
+		      Arrays.sort(chars);
+	            String sorted = new String(chars);
+			if(!m.containsKey(word)) {
+				m.put(word, new ArrayList<>());
+			}
+			
+			m.get(word).p
+		}
+		return null;
+	}
+
+}

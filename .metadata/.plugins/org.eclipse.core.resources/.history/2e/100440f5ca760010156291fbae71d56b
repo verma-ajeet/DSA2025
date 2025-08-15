@@ -1,0 +1,11 @@
+package Prac;
+
+import java.util.stream.IntStream;
+
+public class StreamPra {
+	public static void main(String[] args) {
+		
+		int sum = IntStream.rangeClosed(0, 10).sum();
+		System.out.println(sum);
+	}
+}

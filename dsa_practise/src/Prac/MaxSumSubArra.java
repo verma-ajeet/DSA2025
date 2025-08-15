@@ -1,0 +1,35 @@
+package Prac;
+
+//Kadane’s Algorithm
+
+public class MaxSumSubArra {
+	public static void main(String[] args) {
+		int[] array = { -2, -3, 4, -1, -2, 1, 5, -3 };
+		getMaxSubArraySum(array);
+	}
+
+	private static void getMaxSubArraySum(int[] array) {
+		int currentSum = array[0];
+		int maxSumSoFar = array[0];
+		int start = 0; // Start index of current subarray
+		int end = 0; // End index of best subarray so far
+		int tempStart = 0; // Temporary start index for current subarray
+		for (int i = 1; i < array.length; i++) {
+//			currMax = Math.max(arr[i], currMax + arr[i]);
+//			maxSoFar = Math.max(maxSoFar, currMax);
+			if (array[i] > currentSum + array[i]) {
+				currentSum = array[i];
+				tempStart = i;
+			} else {
+				currentSum += array[i];
+			}
+
+			if (currentSum > maxSumSoFar) {
+				maxSumSoFar = currentSum;
+				start = tempStart;
+				end = i;
+			}
+		}
+		System.out.println(maxSumSoFar);
+	}
+}

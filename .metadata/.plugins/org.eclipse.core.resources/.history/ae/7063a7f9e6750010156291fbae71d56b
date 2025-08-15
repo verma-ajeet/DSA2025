@@ -1,0 +1,17 @@
+package Prac;
+
+import java.util.Arrays;
+import java.util.stream.Stream;
+
+public class StringProblems {
+	public static void main(String[] args) {
+		String str1 = "The quick brown fox jumps right over the little lazy dog";
+		Stream<String> str = Arrays.asList(str1.split(" ")).stream().map(String::toUpperCase);
+		str.filter(
+				word->{
+					 long count=	Arrays.asList(word.split("")).stream().filter(c->"AEIOU".contains(c)).count();
+					 return count==2;
+					}
+				).forEach(System.out::println);
+	}
+}

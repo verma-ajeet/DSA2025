@@ -1,0 +1,13 @@
+package Prac;
+
+public class GroupAnagrams {
+    public static void main(String[] args) {
+        String[] input = {"eat", "tea", "tan", "ate", "nat", "bat"};
+        List<List<String>> grouped = groupAnagrams(input);
+
+        // Print result
+        for (List<String> group : grouped) {
+            System.out.println(group);
+        }
+    }
+}

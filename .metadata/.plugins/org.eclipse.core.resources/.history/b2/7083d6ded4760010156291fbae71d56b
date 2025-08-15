@@ -1,0 +1,95 @@
+package Prac;
+
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.DoubleSummaryStatistics;
+import java.util.List;
+import java.util.Map;
+import java.util.OptionalInt;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
+class Student {
+	private String name;
+	private int id;
+	private String subject;
+	private double percentage;
+
+	public Student(String name, int id, String subject, double percentage) {
+		this.name = name;
+		this.id = id;
+		this.subject = subject;
+		this.percentage = percentage;
+	}
+
+	// Getters
+	public String getName() {
+		return name;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public String getSubject() {
+		return subject;
+	}
+
+	public double getPercentage() {
+		return percentage;
+	}
+
+	@Override
+	public String toString() {
+		return "ClassStudent{" + "name='" + name + '\'' + ", id=" + id + ", subject='" + subject + '\''
+				+ ", percentage=" + percentage + '}';
+	}
+}
+
+public class StreamPra {
+	public static void main(String[] args) {
+
+		int sum = IntStream.rangeClosed(0, 10).sum();
+		System.out.println(sum);
+		OptionalInt reduce = IntStream.range(0, 10).reduce((a, b) -> a + b);
+		System.out.println(reduce);
+		List<Student> student = Arrays.asList(new Student("Alice", 1, "Math", 85.0),
+				new Student("Bob", 2, "Math", 78.5), new Student("Charlie", 3, "Science", 92.0),
+				new Student("Diana", 4, "Science", 88.0), new Student("Ethan", 5, "English", 76.0),
+				new Student("Fiona", 6, "Math", 95.0), new Student("George", 7, "English", 82.0),
+				new Student("Hannah", 8, "Science", 69.5), new Student("Ian", 9, "Math", 58.0),
+				new Student("Jane", 10, "English", 91.0));
+		Map<Boolean, List<String>> partitionedNames = student.stream().collect(Collectors.partitioningBy(
+				s -> s.getPercentage() > 60, Collectors.mapping(Student::getName, Collectors.toList())));
+		System.out.println("Above 60: " + partitionedNames.get(true));
+		Map<Boolean, List<Student>> partition = student.stream()
+				.collect(Collectors.partitioningBy(s -> s.getPercentage() > 60));
+		partition.get(true).forEach(e -> System.out.println(e.getName()));
+
+		student.stream().sorted(Comparator.comparing(Student::getPercentage).reversed()).limit(3)
+				.forEach(System.out::println);
+		student.stream().map(Student::getSubject).collect(Collectors.toSet()).forEach(System.out::println);
+		DoubleSummaryStatistics collect = student.stream()
+				.collect(Collectors.summarizingDouble(Student::getPercentage));
+		System.out.println(collect.getMax() + " " + collect.getMin() + " " + collect.getAverage());
+		long count = student.stream().map(Student::getName).count();
+		System.out.println(count);
+		Map<String, List<Student>> collect2 = student.stream().collect(Collectors.groupingBy(Student::getSubject));
+		System.out.println(collect2);
+		Map<String, Long> collect3 = student.stream().collect(Collectors.groupingBy(Student::getSubject,Collectors.counting()));
+		System.err.println(collect3);
+		String str1 = "The quick brown fox jumps right over the little lazy dog";
+		Arrays.asList(str1.split(" "))
+			.stream()
+			.map(String::toUpperCase)
+			.filter(
+					word -> {
+					long count=Arrays.asList(word.split(""))
+						.stream()
+						.filter(c->"AEIOU".contains(c))
+						.count();
+					return count==2;
+					}).collect(Collectors.toList());
+	}
+}

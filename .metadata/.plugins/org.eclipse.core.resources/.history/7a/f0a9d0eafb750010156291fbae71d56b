@@ -1,0 +1,16 @@
+package Prac;
+
+//Kadane’s Algorithm
+
+public class MaxSumSubArra {
+	public static void main(String[] args) {
+		int[] arr = { -2, -3, 4, -1, -2, 1, 5, -3 };
+		int currMax=arr[0];
+		int maxSoFar=arr[0];
+		for(int i=1;i<arr.length;i++) {
+			currMax= Math.max(maxSoFar, i);
+			maxSoFar = Math.max(maxSoFar, i);
+		}
+		System.out.println(maxSoFar);
+	}
+}

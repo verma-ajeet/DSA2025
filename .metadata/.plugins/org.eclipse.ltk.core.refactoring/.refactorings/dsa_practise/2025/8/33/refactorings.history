@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Extract method &apos;private static void getMaxSubArraySum(int [] array)&apos; from &apos;Prac.MaxSumSubArra.main(...)&apos; to &apos;Prac.MaxSumSubArra&apos;&#x0D;&#x0A;- Original project: &apos;dsa_practise&apos;&#x0D;&#x0A;- Method name: &apos;getMaxSubArraySum&apos;&#x0D;&#x0A;- Destination type: &apos;Prac.MaxSumSubArra&apos;&#x0D;&#x0A;- Declared visibility: &apos;private&apos;" comments="false" description="Extract method &apos;getMaxSubArraySum&apos;" destination="0" exceptions="false" flags="786434" id="org.eclipse.jdt.ui.extract.method" input="/src&lt;Prac{MaxSumSubArra.java" name="getMaxSubArraySum" replace="false" selection="165 669" stamp="1754840419827" version="1.0" visibility="2"/>
+</session>

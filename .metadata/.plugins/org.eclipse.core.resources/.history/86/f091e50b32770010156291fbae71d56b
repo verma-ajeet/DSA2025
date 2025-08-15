@@ -1,0 +1,43 @@
+package Prac;
+
+public class MaxProfit {
+	public static void main(String[] args) {
+		int[] prices1 = { 7, 1, 5, 3, 6, 4 };
+		int[] prices2 = { 7, 6, 4, 3, 1 };
+
+		System.out.println("Max Profit (Test 1): " + maxProfit(prices1)); // Output: 5
+		System.out.println("Max Profit (Test 2): " + maxProfit(prices2)); // Output: 0
+	}
+
+	private static int maxProfit(int[] prices) {
+		int minPrice = Integer.MAX_VALUE;
+		int maxProfit = 0;
+		int daytoSell = 0;
+		int buyDay = 0;
+		for (int i = 0; i < prices.length; i++) {
+			if (minPrice > prices[i]) {
+				minPrice = prices[i];
+				buyDay = i;
+			} else {
+				int profit = prices[i] - minPrice;
+				if (profit > maxProfit) {
+					maxProfit = profit;
+					daytoSell = i;
+				}
+			}
+		}
+		System.out.println("Day to buy " + buyDay + " day to sell " + daytoSell);
+		return maxProfit;
+	}
+
+	private static int maxProfit1(int[] prices) {
+		int min = Integer.MAX_VALUE;
+		int max;
+		for (int i = 0; i < prices.length; i++) {
+			if(min>prices[i]) {
+				min=prices[i];
+			}
+		}
+		return max;
+	}
+}

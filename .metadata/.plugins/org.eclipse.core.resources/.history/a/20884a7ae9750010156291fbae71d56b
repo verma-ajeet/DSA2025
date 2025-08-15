@@ -1,0 +1,52 @@
+package Prac;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
+import java.util.function.Function;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
+public class StringProblems {
+	public static void main(String[] args) {
+		String str1 = "The quick brown fox jumps right over the little lazy dog";
+		Stream<String> str = Arrays.asList(str1.split(" ")).stream().map(String::toUpperCase);
+		str.filter(word -> {
+			long count = Arrays.asList(word.split("")).stream().filter(c -> "AEIOU".contains(c)).count();
+			return count == 2;
+		}).forEach(System.out::println);
+		
+		String s="swiss";
+		String result = Arrays.asList(s.split(""))
+		.stream()
+		.collect(Collectors.groupingBy(Function.identity(),LinkedHashMap::new,Collectors.counting()))
+		.entrySet()
+		.stream()
+		.filter(c->c.getValue()==1)
+		.map(m->m.getKey())
+		.findFirst()
+		.orElse(null);
+		System.out.println(result);
+		Map<Character,Integer> map=new LinkedHashMap<>();
+		for(Character c:s.toCharArray()) {
+			if(map.containsKey(c)) {
+				map.put(c, map.getOrDefault(c, 0)+1);
+			}
+		}
+		
+		for(Map.Entry<Character, Integer> m  :map.entrySet()) {
+			if (m.getValue()==1) {
+				System.out.println(m.getKey());
+			}
+		}
+//		 Anagram
+		String s1="silent";
+		String s2="listen";
+		char[] firstArray = s1.toCharArray();
+		char[] secondArray = s2.toCharArray();
+		Arrays.sort(firstArray);
+		Arrays.sort(secondArray);
+		System.out.println(Arrays.equals(firstArray, secondArray));
+	}
+}

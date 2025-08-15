@@ -1,0 +1,20 @@
+package Prac;
+
+import java.util.HashSet;
+import java.util.Set;
+
+public class LongestUniqueSubstring {
+	public static void main(String[] args) {
+		String input = "abcabcbb";
+		System.out.println("Length of longest unique substring: " + lengthOfLongestSubstring(input));
+	}
+
+	private static String lengthOfLongestSubstring(String input) {
+		int n = input.length();
+		 Set<Character> seen = new HashSet<>();
+		for (int i = 0; i < n; i++) {
+			
+		}
+		return null;
+	}
+}

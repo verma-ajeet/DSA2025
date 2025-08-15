@@ -1,0 +1,53 @@
+package Prac;
+
+import java.util.OptionalInt;
+import java.util.stream.IntStream;
+ class Student {
+    private String name;
+    private int id;
+    private String subject;
+    private double percentage;
+
+    public Student (String name, int id, String subject, double percentage) {
+        this.name = name;
+        this.id = id;
+        this.subject = subject;
+        this.percentage = percentage;
+    }
+
+    // Getters
+    public String getName() {
+        return name;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getSubject() {
+        return subject;
+    }
+
+    public double getPercentage() {
+        return percentage;
+    }
+
+    @Override
+    public String toString() {
+        return "ClassStudent{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", subject='" + subject + '\'' +
+                ", percentage=" + percentage +
+                '}';
+    }
+}
+public class StreamPra {
+	public static void main(String[] args) {
+		
+		int sum = IntStream.rangeClosed(0, 10).sum();
+		System.out.println(sum);
+		OptionalInt reduce = IntStream.range(0, 10).reduce((a,b) -> a+b);
+		System.out.println(reduce);
+	}
+}

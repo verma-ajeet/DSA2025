@@ -1,0 +1,209 @@
+package Linkedlist;
+
+import java.util.LinkedList;
+
+import Linkedlist.LL.Node;
+
+public class PracLL {
+	Node head;
+	int size = 0;
+
+	class Node {
+		int data;
+		Node next;
+
+		public Node(int data) {
+			super();
+			this.data = data;
+			this.next = null;
+		}
+	}
+
+	public static void main(String[] args) {
+		PracLL p = new PracLL();
+		p.add(2);
+		p.add(3);
+		p.add(4);
+		p.addFirst(1);
+		p.add(6);
+		p.addAtIndex(4, 5);
+		System.out.println("Is list cyclic? " + p.isCyclic());
+//		to check cyclic
+
+		PracLL p1 = new PracLL();
+		p1.add(2);
+		p1.add(3);
+		p1.add(4);
+		p1.addFirst(1);
+		p1.add(6);
+		p1.addAtIndex(4, 5);
+		p1.head.next.next.next.next = p1.head.next; // Creates a loop: 2 -> 3 -> 4 -> 6 -> (back to 3)
+		System.out.println("Is list cyclic? " + p1.isCyclic());
+
+		System.out.println("Before reverse");
+		p.print();
+		p.reverse();
+		p.print();
+		p.rightRotate(2);
+
+//		 SOrt 0 and 1
+		PracLL p0 = new PracLL();
+		p0.add(0);
+		p0.add(2);
+		p0.add(1);
+		p0.add(1);
+		p0.add(1);
+		p0.add(0);
+		p0.print();
+		p0.sort01();
+	}
+
+	private void sort01() {
+		Node zeroDummy = new Node(0);
+		Node oneDummy = new Node(0);
+		Node twoDummy = new Node(0);
+		Node zeroTail = zeroDummy;
+		Node oneTail = oneDummy;
+		Node twoTail = twoDummy;
+		Node curr = head;
+		while (curr != null) {
+			if (curr.data == 0) {
+				zeroDummy.next = curr;
+				zeroTail = curr;
+			} else if (curr.data == 1) {
+				oneDummy.next = curr;
+				oneTail = curr;
+			} else if (curr.data == 2) {
+				twoTail.next = curr;
+				twoTail = curr;
+			}
+			curr = curr.next;
+		}
+
+		zeroTail.next = (oneDummy.next != null) ? oneDummy.next : twoDummy.next;
+		oneTail.next=twoDummy.next;
+		twoTail.next = null;
+	}
+
+	private void rightRotate(int k) {
+		int len = size;
+		k = k % size;
+		if (head == null || head.next == null || k == 0) {
+			return;
+		}
+		Node newTail = head;
+		for (int i = 1; i <= len - k; i++) {
+			newTail = newTail.next;
+		}
+		System.out.println(newTail.data);
+		Node newHead = newTail.next;
+		Node curr = newHead;
+		while (curr.next != null) {
+			curr = curr.next;
+		}
+		newTail.next = null;
+		curr.next = head;
+		head = newHead;
+		System.out.println("After rotating by " + k);
+		print();
+	}
+
+	private void reverse() {
+		if (head == null) {
+			System.out.println("list is empty");
+			return;
+		}
+		Node prev = null;
+		Node curr = head;
+		Node next = null;
+		while (curr != null) {
+			next = curr.next;
+			curr.next = prev;
+			prev = curr;
+			curr = next;
+		}
+		head = prev;
+		System.out.println("\n After reversing \n=========================");
+		print();
+	}
+
+	private Boolean isCyclic() {
+		if (head == null) {
+			return false;
+		}
+		Node slow = head;
+		Node fast = head.next;
+		while (fast != null && fast.next != null) {
+			slow = slow.next;
+			fast = fast.next.next;
+			if (slow == fast) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private void addAtIndex(int index, int data) {
+		Node newNode = new Node(data);
+		if (size == 0) {
+			System.out.println("list is empty");
+			return;
+		}
+		Node curr = head;
+		int ind = index - 1;
+		for (int i = 0; i < size && curr != null; i++) {
+			if (i == ind) {
+				System.out.println(curr.next.data);
+				newNode.next = curr.next;
+				curr.next = newNode;
+				break;
+			}
+			curr = curr.next;
+		}
+		System.out.println("after adding at index" + index);
+		print();
+	}
+
+	private void addFirst(int data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			return;
+		}
+		newNode.next = head;
+		head = newNode;
+		size++;
+		System.out.println("After adding element at 1st position");
+		print();
+	}
+
+	private void print() {
+		if (head == null) {
+			System.out.println("[]");
+			return;
+		}
+		Node curr = head;
+		while (curr != null) {
+			System.out.print(curr.data + " -> ");
+			curr = curr.next;
+		}
+		System.out.println("NULL");
+	}
+
+	private void add(int data) {
+		Node newNode = new Node(data);
+		if (head == null) {
+			head = newNode;
+			size++;
+			return;
+		}
+		Node curr = head;
+		while (curr.next != null) {
+			curr = curr.next;
+		}
+		curr.next = newNode;
+		size++;
+		print();
+	}
+
+}
