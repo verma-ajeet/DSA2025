@@ -9,6 +9,7 @@ public class Anagram {
 		System.out.println("Done");
 		System.out.println("Completed");
 		System.out.println("Completed");
+		System.out.println("Completed");
 
 	}
 
